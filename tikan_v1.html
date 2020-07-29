@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>置換</title>
+<style type="text/css">
+	body {
+	    background-color: #eeeeee; 
+	    color: #000000; 
+	    margin: 2; 
+	    padding: 2;
+	    font-family: "ＭＳ ゴシック",sans-serif;
+	}
+	textarea {
+	    width: 800px;
+	    height: 150px;
+	    border: 2px solid #ffcc77;
+	    font-family: "ＭＳ ゴシック",sans-serif;
+	}
+
+</style>
+<script type="text/javascript">
+
+function tikan(){
+	tx = document.getElementById('ss1').value;
+	var r_f;
+	var r_t;
+	r_f = document.getElementById('rp_frm').value;
+	r_t = document.getElementById('rp_to').value;
+
+	r_t = r_t.replace("\\" + "n","\u000d\u000a");
+	r_t = r_t.replace("\\" + "t","\u0009");
+
+	tx = tx.replace(new RegExp(r_f,"g"), r_t ); 
+	document.getElementById('ss2').value = tx;	
+}
+
+function tereko(){
+	
+	var p1;
+	var p2;
+	p1 = document.getElementById('rp_frm').value;
+	p2 = document.getElementById('rp_to').value;
+	//alert(p1 +" " + p2);
+	document.getElementById('rp_frm').value = p2;
+	document.getElementById('rp_to').value = p1;
+}
+
+</script>
+</head>
+
+<body >
+<form name="test">
+	<input type="text" id="rp_frm" value="\n">
+	<input type="button" value="⇔" onClick="tereko()">
+	<br/>
+	<input type="text" id="rp_to" value="\t"><br/>
+	<br/><br/><input type="button" value="置換" onClick="tikan()">
+</form>
+
+<br/>
+<textarea id="ss1" >
+あいうえお
+かきくけこ
+さしすせそ
+</textarea><br/>
+
+<textarea id="ss2">
+</textarea><br/>
+
+</body>
+</html>
